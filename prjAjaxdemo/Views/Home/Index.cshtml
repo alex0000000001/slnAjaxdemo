@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">AjaxHomeWork</h1>
+    <p><a href="https://docs.microsoft.com/aspnet/core">作業一</a></p>
+    <input class="btn btn-danger" type="button" name="name" value="Show" />
+</div>
+
+
+<div class="text-center">
+    <table id="myTable" class="table table-dark mt-3">
+        <tr>
+            <th>序號</th><th>員工名稱</th> <th>年資</th><th>薪水</th>
+        </tr>
+    </table>
+</div>
+
+@section Styles
+{ 
+    <style>
+        h1{ color:red;background-color:aliceblue;}
+        td {border:2px solid black}
+    </style>
+    
+}
+
+@section Scripts
+{   
+    <script>
+
+
+        /*$(".display-4").text("Welcome Mvc");*/
+
+        //$(".btn").add(ChangeTxt);
+        var emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+        // ====================================
+
+        //for (let i = 0; i < emp.employees.length; i++) {
+        //    console.log(emp.employees[i].name)
+        //    console.log(emp.employees[i].salary)
+        //    console.log(emp.employees[i].workYears)
+        //}
+
+
+        console.log("===================================");
+
+        var Mytable = document.getElementById("myTable");
+        //====================================
+    
+
+        // ES6
+        let count = 0;
+        emp.employees.forEach(employee => {
+
+            
+
+            const { name, workYears, salary } = employee;
+            //console.log(name);
+            //console.log(workYears);
+            //console.log(salary);
+
+           
+            count++;
+
+            var MyTr = document.createElement("tr");
+            var MyTd0 = document.createElement("td");
+            var MyTd1 = document.createElement("td");
+            var MyTd2 = document.createElement("td");
+            var MyTd3 = document.createElement("td");
+
+           
+            let Myname = name;
+            let MyworkYears = workYears;
+            let Mysalary = salary;
+
+            MyTd0.textContent = count;
+            MyTd1.textContent = name;
+            MyTd2.textContent = workYears;
+            MyTd3.textContent = salary;
+
+            MyTr.appendChild(MyTd0);
+            MyTr.appendChild(MyTd1);
+            MyTr.appendChild(MyTd2);
+            MyTr.appendChild(MyTd3);
+
+            console.log(MyTr);
+            Mytable.appendChild(MyTr);
+        })
+
+
+        // JQuery
+        $(".btn").click(()=>
+        {
+            $.each(emp.employees, (index, employee) => {
+
+                /*console.log(index);*/
+                const { name, workYears, salary } = employee
+
+                console.log(name);
+                console.log(workYears);
+                console.log(salary);
+            })
+        })
+
+    </script>
+
+
+}
