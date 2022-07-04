@@ -1,0 +1,91 @@
+﻿@model prjAjaxdemo.Models.Member
+
+@{
+    ViewData["Title"] = "HomeWorkRegister";
+}
+
+<h1>作業2</h1>
+
+<h4>新增會員</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form name="userInfo" method="post" enctype="application/x-www-form-urlencoded" action="~/Api/Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="MemberId" class="control-label"></label>
+                <input asp-for="MemberId" class="form-control" />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" id="InputName" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <small id="nameHelp" style="color:red; font-size:10px;"></small>
+                @*字不能調小*@
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileData" class="control-label"></label>
+                <input asp-for="FileData" class="form-control" />
+                <span asp-validation-for="FileData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="確認新增" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    <script>
+    const InputName = document.querySelector('#InputName');
+    const helpInfo = document.querySelector('#nameHelp');
+    //const btnSubmit = document.querySelector('.btn');
+
+        InputName.addEventListener('blur', (evt) => {
+            console.log(InputName);
+        /*evt.preventDefault();*/ //停止預設行為 submit link
+        const formData = new FormData(document.userInfo);
+         //step1
+        const xhr = new XMLHttpRequest();
+
+        xhr.addEventListener('load', () => {
+            //step3
+            const data = xhr.responseText;
+            //顯示資料
+            helpInfo.innerHTML = `<h3>${data}</h3>`;
+        })
+
+        //step2
+        xhr.open('POST', '@Url.Content("~/Api/Create")');
+        xhr.send(formData);
+    });
+    </script>
+
+
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

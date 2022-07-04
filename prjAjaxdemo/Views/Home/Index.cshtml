@@ -11,9 +11,17 @@
 
 <div class="text-center">
     <table id="myTable" class="table table-dark mt-3">
-        <tr>
-            <th>序號</th><th>員工名稱</th> <th>年資</th><th>薪水</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>序號</th>
+                <th>員工名稱</th>
+                <th>年資</th>
+                <th>薪水</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
     </table>
 </div>
 
@@ -58,57 +66,64 @@
 
         // ES6
         let count = 0;
-        emp.employees.forEach(employee => {
+        let docFrag = document.createDocumentFragment;
+        $(".btn").click(() => {
+        
+        
+            emp.employees.forEach(employee => {
 
-            
 
-            const { name, workYears, salary } = employee;
-            //console.log(name);
-            //console.log(workYears);
-            //console.log(salary);
 
-           
-            count++;
+                const { name, workYears, salary } = employee;
+                //console.log(name);
+                //console.log(workYears);
+                //console.log(salary);
 
-            var MyTr = document.createElement("tr");
-            var MyTd0 = document.createElement("td");
-            var MyTd1 = document.createElement("td");
-            var MyTd2 = document.createElement("td");
-            var MyTd3 = document.createElement("td");
 
-           
-            let Myname = name;
-            let MyworkYears = workYears;
-            let Mysalary = salary;
+                count++;
 
-            MyTd0.textContent = count;
-            MyTd1.textContent = name;
-            MyTd2.textContent = workYears;
-            MyTd3.textContent = salary;
+                var MyTd0 = document.createElement("td");
+                var MyTd1 = document.createElement("td");
+                var MyTd2 = document.createElement("td");
+                var MyTd3 = document.createElement("td");
 
-            MyTr.appendChild(MyTd0);
-            MyTr.appendChild(MyTd1);
-            MyTr.appendChild(MyTd2);
-            MyTr.appendChild(MyTd3);
 
-            console.log(MyTr);
-            Mytable.appendChild(MyTr);
+                let Myname = name;
+                let MyworkYears = workYears;
+                let Mysalary = salary;
+
+                MyTd0.textContent = count;
+                MyTd1.textContent = name;
+                MyTd2.textContent = workYears;
+                MyTd3.textContent = salary;
+
+                const MyTr = document.createElement("tr")
+
+                MyTr.appendChild(MyTd0);
+                MyTr.appendChild(MyTd1);
+                MyTr.appendChild(MyTd2);
+                MyTr.appendChild(MyTd3);
+
+                //console.log(MyTr);
+                docFrag.appendChild(MyTr);
+            })
+
+            Mytable.appendChild(docFrag);
         })
-
 
         // JQuery
-        $(".btn").click(()=>
-        {
-            $.each(emp.employees, (index, employee) => {
+        //$(".btn").click(()=>
+        //{
+        //    $.each(emp.employees, (index, employee) => {
 
-                /*console.log(index);*/
-                const { name, workYears, salary } = employee
+        //        /*console.log(index);*/
+        //        const { name, workYears, salary } = employee
 
-                console.log(name);
-                console.log(workYears);
-                console.log(salary);
-            })
-        })
+        //        console.log(name);
+        //        console.log(workYears);
+        //        console.log(salary);
+        //    })
+        //})
 
     </script>
 

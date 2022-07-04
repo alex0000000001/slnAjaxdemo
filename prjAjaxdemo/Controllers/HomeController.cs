@@ -12,13 +12,27 @@ namespace prjAjaxdemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DemoContext db;
+        public HomeController(ILogger<HomeController> logger, DemoContext demoContext)
         {
             _logger = logger;
+            db = demoContext;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult AjaxPost()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult HomeWorkRegister()
         {
             return View();
         }
