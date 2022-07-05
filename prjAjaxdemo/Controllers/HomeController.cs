@@ -32,7 +32,28 @@ namespace prjAjaxdemo.Controllers
         {
             return View();
         }
+
+        public IActionResult Address()
+        {
+            return View();
+        }
+
+
         public IActionResult HomeWorkRegister()
+        {
+            return View();
+        }
+
+        public IActionResult HomeWorkFetch()
+        {
+            return View();
+        }
+
+        public IActionResult Promise()
+        {
+            return View();
+        }
+        public IActionResult fetch()
         {
             return View();
         }

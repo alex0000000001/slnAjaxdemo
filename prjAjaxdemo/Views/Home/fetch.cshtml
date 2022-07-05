@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "fetch";
+}
+
+<h1>fetch</h1>
+
+<img id="img1" />
+
+@section Scripts{ 
+
+    <script>
+
+        @*const myImg = document.querySelector("#img1");
+
+        let str = "金門縣"
+        fetch('@Url.Content("~/api/district")' + `?city=${str}`)
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(reject => {
+                return reject.text();
+            })
+
+        fetch('@Url.Content("~/api/GetImageBytes?id=2")')
+            .then(response => response.blob())
+            .then(datas => {
+                myImg.src = URL.createObjectURL(datas);
+            })*@
+
+
+        async function LoadMembers() {
+            const response = await fetch('@Url.Content("~/api/members")');
+            const datas = await response.json();
+            datas.forEach(member => {
+                console.log(member.name)
+                console.log(member.memberid)
+            });
+        }
+
+        LoadMembers();
+
+
+    </script>
+
+
+}

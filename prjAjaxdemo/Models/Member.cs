@@ -8,6 +8,7 @@ namespace prjAjaxdemo.Models
 {
     public partial class Member
     {
+
         public int MemberId { get; set; }
         [DisplayName("會員姓名")]
         public string Name { get; set; }
@@ -21,3 +22,4 @@ namespace prjAjaxdemo.Models
         public byte[] FileData { get; set; }
     }
 }
+
